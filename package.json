@@ -7,7 +7,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/larafale/mangopay.git"
+    "url": "https://github.com/mstn/mangopay.git"
   },
   "engines": {
     "node": "0.10.x",
