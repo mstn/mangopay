@@ -13,7 +13,7 @@ describe('Mango wrapper', function(){
   it('expect credentials', function(){
 
     expect(Mango.bind(null,{})).to.throw('Provide credentials')
-  
+
   })
 
   it('use sandbox as default', function(){
@@ -26,7 +26,7 @@ describe('Mango wrapper', function(){
   it('create a user and his wallet', function(done){
     this.timeout(5000)
 
-    mango.user.signup({ 
+    mango.user.signup({
         Email: 'bob@flooz.me'
       , FirstName: 'Emmanuel'
       , LastName: 'Meunier'
@@ -34,12 +34,12 @@ describe('Mango wrapper', function(){
     }, done)
 
   })
-
+  
   it.only('list users', function(done){
     mango.user.list(function(err, body, res){
       console.log(body)
       done(err)
     })
   })
-  
+
 })

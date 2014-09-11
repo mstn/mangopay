@@ -18,6 +18,7 @@
     "chai": "~1.9.1"
   },
   "dependencies": {
+    "lodash": "^2.4.1",
     "when": "~3.1.0"
   },
   "scripts": {

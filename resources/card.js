@@ -1,3 +1,8 @@
+/**
+ *  It implements the card registration workflow
+ *  @see http://docs.mangopay.com/api-references/card-registration/
+ */
+
 
 var httpClient = require('../lib/httpClient')
   , httpMethod = require('../lib/httpMethod')
@@ -9,22 +14,37 @@ var qs = require('querystring')
 var Url = require('url')
 
 module.exports = httpClient.extend({
-  
+
   path: 'cardregistrations',
-  
+
   includeBasic: [ ],
 
   methods: {
 
+    /**
+     *  Create a CardRegistration object.
+     */
     create: httpMethod({
       method: 'POST',
       path: '',
       params: {
           'UserId': { required: true }
         , 'Currency': { required: true, default: 'EUR' }
-        , 'CardNumber': { required: true, default: '4970100000000154' }
-        , 'CardExpirationDate': { required: true, default: '0216' }
-        , 'CardCvx': { required: true, default: '123' }
+      }
+    }),
+
+    /**
+     * Create a CardRegistration object and send card details in a single step
+     */
+    register: httpMethod({
+      method: 'POST',
+      path:'',
+      params: {
+          'UserId': { required: true }
+        , 'Currency': { required: true, default: 'EUR' }
+        , 'CardNumber': { required: true }
+        , 'CardExpirationDate': { required: true }
+        , 'CardCvx': { required: true }
       }
     }, function(err, body, res, params, next){
         var self = this
@@ -71,10 +91,10 @@ module.exports = httpClient.extend({
         var body = ''
         res.setEncoding('utf8')
         res.on('data', function(chunk){ body += chunk })
-        res.on('end', function(){ 
+        res.on('end', function(){
 
           body = qs.parse(body)
-          
+
           if(body.errorCode)
             return next.call(self, error(body.errorCode))
 
