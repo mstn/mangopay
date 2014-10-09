@@ -29,8 +29,8 @@ describe('Test cards', function(){
     });
   });
 
-  it('complete registration for an existing user', function(done){
-    this.timeout(5000);
+  it('complete registration for an existing user in a single step', function(done){
+    this.timeout(20000);
     mango.card.register({
       'Currency':'EUR',
       'UserId':'2565355',
@@ -47,7 +47,7 @@ describe('Test cards', function(){
         assert.property(card, 'UserId');
         assert.property(card, 'CardId');
         assert.isDefined(card['CardId']);
-        
+
         done();
     });
   });
